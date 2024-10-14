@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">MenuPropines</string>
+    <string name="Como_ha_sido_el_servicio">Como ha sido el servicio?</string>
+    <string name="coste_del_servicio">coste del servicio</string>
+    <string name="redondear_propina">Redondear propina?</string>
+    <string name="calcular">Calcular</string>
+    <string name="increivle_20">Increivle (20%)</string>
+    <string name="bueno_18">Bueno (18%)</string>
+    <string name="norma_15">Norma(15%)</string>
+    <string name="propina">Propina</string>
+</resources>
