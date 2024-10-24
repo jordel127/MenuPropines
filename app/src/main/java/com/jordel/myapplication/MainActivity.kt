@@ -12,28 +12,25 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.databinding.DataBindingUtil
+import com.jordel.myapplication.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
+        val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        val precioServicio: EditText = findViewById(R.id.editTextText)
-        var propina: TextView = findViewById(R.id.Propina)
-        val radioGroupTips: RadioGroup = findViewById(R.id.tipoDePropina)
-        val propinaRedondeada: Switch = findViewById(R.id.switchPropina)
-        val bottoCalcularPropina: Button = findViewById(R.id.buttonCalcularPropina)
-
-
-        bottoCalcularPropina.setOnClickListener{
-            val precio = precioServicio.text.toString().toDoubleOrNull() ?: 0.0
-            var tempTip = radioGroupTips.checkedRadioButtonId
+        binding.buttonCalcularPropina.setOnClickListener{
+            val precio = binding.editTextText.text.toString().toDoubleOrNull() ?: 0.0
+            var tempTip = binding.tipoDePropina.checkedRadioButtonId
             var typeTip = when (tempTip) {
                 R.id.radioButton20 -> 20
                 R.id.radioButton18 -> 18
@@ -42,13 +39,13 @@ class MainActivity : AppCompatActivity() {
             }
             var propianfianl = precio  * typeTip/100
 
-            val propinaRedondeada = if (propinaRedondeada.isChecked){
+            val propinaRedondeada = if (binding.switchPropina.isChecked){
                 kotlin.math.round(propianfianl)
             } else {
                 propianfianl
             }
 
-            propina.setText(propinaRedondeada.toString())
+            binding.Propina.setText(propinaRedondeada.toString())
 
         }
 
